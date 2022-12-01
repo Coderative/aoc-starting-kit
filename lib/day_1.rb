@@ -2,7 +2,7 @@ require_relative "./aoc"
 
 class Day1 < AOC
   def solve(part:)
-    data = lazy_load_data
+    data = read_input_file.map(&:to_i)
     data = convert_strings_to_integers(data)
     data = break_list(data)
     data = count_calories(data)

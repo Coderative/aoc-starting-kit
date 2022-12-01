@@ -3,7 +3,7 @@ class AOC
     @input_file = input_file
   end
 
-  def lazy_load_data
-    IO.foreach(@input_file).lazy
+  def read_input_file
+    IO.read(@input_file).split("\n")
   end
 end
