@@ -17,7 +17,6 @@ class Day1 < AOC
     data
       .chunk_while { |first, second| first !=  0 && second != 0 }
       .filter { |elf| elf != [0] }
-      .to_a
   end
 
   def count_calories(data)
