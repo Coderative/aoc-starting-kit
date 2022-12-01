@@ -6,6 +6,11 @@ namespace :aoc do
     input_file = "data/day#{args[:day]}.txt"
     day = day_class.new(input_file: input_file)
 
-    puts day.solve(part: args[:part].to_i)
+    start = Time.now
+    result = day.solve(part: args[:part].to_i)
+    finish = Time.now
+    time = finish - start
+    puts "Result: #{result}"
+    puts "Took: #{time}s"
   end
 end
