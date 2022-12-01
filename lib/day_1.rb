@@ -1,5 +1,3 @@
-require_relative "./aoc"
-
 class Day1 < AOC
   def solve(part:)
     data = read_input_file.map(&:to_i)
