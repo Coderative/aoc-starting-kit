@@ -2,7 +2,7 @@ require_relative "./aoc"
 
 class Day1 < AOC
   def solve(part:)
-    data = lazy_load_data.map(&:to_i)
+    data = read_input_file.map(&:to_i)
     if part == 1
       count(data)
     else
@@ -17,7 +17,6 @@ class Day1 < AOC
     data
       .each_cons(2)
       .filter { |source, target|  source < target}
-      .force
       .length
   end
 end
