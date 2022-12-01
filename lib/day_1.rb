@@ -2,16 +2,12 @@ require_relative "./aoc"
 
 class Day1 < AOC
   def solve(part:)
-    data = read_input_file.map(&:to_i)
-    data = convert_strings_to_integers(data)
-    data = break_list(data)
-    data = count_calories(data)
-
-    if part == 1
-      find_max(data)
-    else
-      find_max_3(data).sum
-    end
+    read_input_file
+      .map(&:to_i)
+      .then(&method(:convert_strings_to_integers))
+      .then(&method(:break_list))
+      .then(&method(:count_calories))
+      .then { |data| part == 1 ? data.max : data.max(3).sum  }
   end
 
   def convert_strings_to_integers(data)
