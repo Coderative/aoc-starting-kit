@@ -24,12 +24,4 @@ class Day1 < AOC
   def count_calories(data)
     data.map(&:sum)
   end
-
-  def find_max(data)
-    data.max
-  end
-
-  def find_max_3(data)
-    data.max(3)
-  end
 end

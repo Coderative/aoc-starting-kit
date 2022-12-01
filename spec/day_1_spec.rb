@@ -33,22 +33,10 @@ RSpec.describe Day1 do
       expected = [6000, 4000]
       expect(day.count_calories(data)).to eq(expected)
     end
-
-    it "finds the maximum" do
-      data = [6000, 4000]
-      expected = 6000
-      expect(day.find_max(data)).to eq(expected)
-    end
   end
 
   context "part two" do
     let(:part) { 2 }
     it { is_expected.to eq(45000) }
-
-    it "finds the 3 biggest numbers" do
-      data = [6000, 4000, 2000, 5000, 10000]
-      expected = [10000, 6000, 5000]
-      expect(day.find_max_3(data)).to eq(expected)
-    end
   end
 end
