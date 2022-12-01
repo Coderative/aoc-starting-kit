@@ -1,5 +1,3 @@
-require "day_1"
-
 RSpec.describe Day1 do
   subject { day.solve(part: part) }
 

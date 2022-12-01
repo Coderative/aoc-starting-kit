@@ -1,5 +1,3 @@
-require "aoc"
-
 RSpec.describe AOC do
   subject(:day) { described_class.new(input_file: double()) }
 
@@ -32,7 +30,7 @@ RSpec.describe AOC do
     end
   end
 
-  describe "#sums_on_sublists"
+  describe "#sums_on_sublists" do
     it "adds each sublist elements" do
       data = [
         [1000, 2000, 3000],
@@ -41,4 +39,5 @@ RSpec.describe AOC do
       expected = [6000, 4000]
       expect(day.sums_on_sublists(data)).to eq(expected)
     end
+  end
 end

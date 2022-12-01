@@ -1,4 +1,4 @@
-Dir["./lib/*.rb"].sort.each { |f| require f }
+require_relative "./lib/loader"
 
 namespace :aoc do
   task :solve, [:day, :part] do  |task, args|
