@@ -8,10 +8,10 @@ class Day5 < AOC
   end
 
   def input_parts
-    initial, instruction = read_input_file.chunk_while { |_first, second| second != "" }.to_a
+    initial, _blank_line, instruction = read_input_file.slice_when { |first, second| [first, second].include?("") }.to_a
     {
       initial: initial,
-      instruction: instruction[1..]
+      instruction: instruction
     }
   end
 
