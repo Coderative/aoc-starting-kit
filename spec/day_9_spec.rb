@@ -87,83 +87,73 @@ RSpec.describe Day9 do
     end
 
     it "moves T to the right once" do
-      head = {x: 0, y: 0}
       tail = {x: -1, y: 0}
       new_head = {x: 1, y: 0}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
       expect(tail).to eq({x: -1, y: 0})
     end
 
     it "moves T left once" do
-      head = {x: 0, y: 0}
       tail = {x: 1, y: 0}
       new_head = {x: -1, y: 0}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
     end
 
     it "moves T down once" do
-      head = {x: 0, y: 0}
       tail = {x: 0, y: 1}
       new_head = {x: 0, y: -1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
     end
 
     it "moves T up once" do
-      head = {x: 0, y: 0}
       tail = {x: 0, y: -1}
       new_head = {x: 0, y: 1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
     end
 
     it "does not move T when H overlaps" do
-      head = {x: 0, y: 0}
       tail = {x: -1, y: 0}
       new_head = {x: -1, y: 0}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: -1, y: 0})
     end
 
     it "does not move T when H is still adjacent" do
-      head = {x: 0, y: 0}
       tail = {x: -1, y: 0}
       new_head = {x: 0, y: 1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: -1, y: 0})
     end
 
     it "moves T up and to the right" do
-      head = {x: 0, y: 0}
       tail = {x: -1, y: -1}
       new_head = {x: 0, y: 1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
     end
 
     it "moves T up and to the left" do
-      head = {x: 0, y: 0}
       tail = {x: 1, y: -1}
       new_head = {x: 0, y: 1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 0})
     end
 
     it "moves T to a diagonal" do
-      head = {x: 4, y: 0}
       tail = {x: 3, y: 0}
       new_head = {x: 5, y: 1}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 4, y: 1})
     end
 
     it "does not move T to another diagonal" do
-      head = {x: 1, y: 1}
       tail = {x: 0, y: 0}
       new_head = {x: 0, y: 2}
-      new_tail = day.move_tail(head, new_head, tail)
+      new_tail = day.move_tail(new_head, tail)
       expect(new_tail).to eq({x: 0, y: 1})
     end
 

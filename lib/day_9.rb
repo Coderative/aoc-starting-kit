@@ -38,7 +38,7 @@ class Day9 < AOC
 
       new_knots = knots[0..-2].zip(knots[1..]).reduce([new_head]) do |new_knots, (knot_1, knot_2)|
         new_knot_1 = new_knots[-1]
-        new_knot_2 = move_tail(knot_1, new_knot_1, knot_2)
+        new_knot_2 = move_tail(new_knot_1, knot_2)
         new_knots << new_knot_2
       end
       do_make_moves(positions << new_knots, remaining_movements)
@@ -52,10 +52,9 @@ class Day9 < AOC
     end
   end
 
-  def move_tail(head, new_head, tail)
+  def move_tail(new_head, tail)
     new_tail = tail.dup
 
-    return new_tail if are_adjacent?(new_head, new_tail)
     delta_x = delta_x(new_head, new_tail)
     delta_y = delta_y(new_head, new_tail)
     case delta_x.abs + delta_y.abs
