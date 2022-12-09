@@ -9,22 +9,20 @@ RSpec.describe Day9 do
     it { is_expected.to eq(13) }
 
     it "moves H to the left once" do
-      head = {x: 0, y: 0}
-      tail = {x: -1, y: 0}
+      rope = [{x: 0, y: 0}, {x: -1, y: 0}]
       movements = [:left]
-      positions = day.make_moves([head, tail], movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: -1, y: 0}],
         [{x: -1, y: 0}, {x: -1, y: 0}]
       ])
     end
 
     it "moves H to the left twice" do
-      head = {x: 0, y: 0}
-      tail = {x: -1, y: 0}
+      rope = [{x: 0, y: 0} , {x: -1, y: 0}]
       movements = [:left, :left]
-      positions = day.make_moves([head, tail], movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: -1, y: 0}],
         [{x: -1, y: 0}, {x: -1, y: 0}],
         [{x: -2, y: 0}, {x: -1, y: 0}]
@@ -32,33 +30,30 @@ RSpec.describe Day9 do
     end
 
     it "moves H to the right once" do
-      head = {x: 0, y: 0}
-      tail = {x: -1, y: 0}
+      rope = [{x: 0, y: 0}, {x: -1, y: 0}]
       movements = [:right]
-      positions = day.make_moves([head, tail], movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: -1, y: 0}],
         [{x: 1, y: 0}, {x: 0, y: 0}]
       ])
     end
 
     it "moves H to up once" do
-      head = {x: 0, y: 0}
-      tail = {x: -1, y: 0}
+      rope = [{x: 0, y: 0}, {x: -1, y: 0}]
       movements = [:up]
-      positions = day.make_moves([head, tail], movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: -1, y: 0}],
         [{x: 0, y: 1}, {x: -1, y: 0}]
       ])
     end
 
     it "moves H down once" do
-      head = {x: 0, y: 0}
-      tail = {x: -1, y: 0}
+      rope = [{x: 0, y: 0}, {x: -1, y: 0}]
       movements = [:down]
-      positions = day.make_moves([head, tail], movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: -1, y: 0}],
         [{x: 0, y: -1}, {x: -1, y: 0}]
       ])
@@ -79,10 +74,9 @@ RSpec.describe Day9 do
     it "tracks H movement" do
       input = day.read_input_file
       movements = day.build_movements(input)
-      head = {x: 0, y: 0}
-      tail = {x: 0, y: 0}
-      positions = day.make_moves([head, tail], movements)
-      final_head = positions[-1][0]
+      rope = [{x: 0, y: 0}, {x: 0, y: 0}]
+      ropes = day.make_moves([rope], movements)
+      final_head = ropes[-1][0]
       expect(final_head).to eq({x: 2, y: 2})
     end
 
@@ -160,10 +154,9 @@ RSpec.describe Day9 do
     it "tracks T movement" do
       input = day.read_input_file
       movements = day.build_movements(input)
-      head = {x: 0, y: 0}
-      tail = {x: 0, y: 0}
-      positions = day.make_moves([head, tail], movements)
-      final_tail = positions[-1][-1]
+      rope = [{x: 0, y: 0}, {x: 0, y: 0}]
+      ropes = day.make_moves([rope], movements)
+      final_tail = ropes[-1][-1]
       expect(final_tail).to eq({x: 1, y: 2})
     end
   end
@@ -173,18 +166,15 @@ RSpec.describe Day9 do
     it { is_expected.to eq(1) }
 
     it "tracks T movement" do
-      movements = [:up, :up, :up, :up]
-      head = {x: 0, y: 0}
-      knot_1 = {x: 0, y: 0}
-      knot_2 = {x: 0, y: 0}
-      knots = [
-        head,
-        knot_1,
-        knot_2
+      rope = [
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0}
       ]
+      movements = [:up, :up, :up, :up]
 
-      positions = day.make_moves(knots, movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}],
         [{x: 0, y: 1}, {x: 0, y: 0}, {x: 0, y: 0}],
         [{x: 0, y: 2}, {x: 0, y: 1}, {x: 0, y: 0}],
@@ -196,34 +186,24 @@ RSpec.describe Day9 do
     it "tracks T movement" do
       input = day.read_input_file
       movements = day.build_movements(input)
-      head = {x: 0, y: 0}
-      knot_1 = {x: 0, y: 0}
-      knot_2 = {x: 0, y: 0}
-      knot_3 = {x: 0, y: 0}
-      knot_4 = {x: 0, y: 0}
-      knot_5 = {x: 0, y: 0}
-      knot_6 = {x: 0, y: 0}
-      knot_7 = {x: 0, y: 0}
-      knot_8 = {x: 0, y: 0}
-      knot_9 = {x: 0, y: 0}
-      knots = [
-        head,
-        knot_1,
-        knot_2,
-        knot_3,
-        knot_4,
-        knot_5,
-        knot_6,
-        knot_7,
-        knot_8,
-        knot_9
+      rope = [
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+        {x: 0, y: 0}
       ]
 
-      positions = day.make_moves(knots, movements)
-      final_positions = positions[-1]
-      final_head = final_positions[0]
-      final_knot_1 = final_positions[1]
-      final_tail = final_positions[-1]
+      ropes = day.make_moves([rope], movements)
+      final_rope = ropes[-1]
+      final_head = final_rope[0]
+      final_knot_1 = final_rope[1]
+      final_tail = final_rope[-1]
       expect(final_head).to eq({x: 2, y: 2})
       expect(final_knot_1).to eq({x: 1, y: 2})
       expect(final_tail).to eq({x: 0, y: 0})
@@ -235,15 +215,15 @@ RSpec.describe Day9 do
     it { is_expected.to eq(36) }
 
     it "moves mid knots when moving up" do
-      knots = [
+      rope = [
         {x: 5, y: 0},
         {x: 4, y: 0},
         {x: 3, y: 0},
         {x: 2, y: 0}
       ]
       movements = [:up, :up]
-      positions = day.make_moves(knots, movements)
-      expect(positions).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes).to eq([
         [
           {x: 5, y: 0},
           {x: 4, y: 0},
@@ -264,7 +244,7 @@ RSpec.describe Day9 do
     end
 
     it "moves mid knots when moving left" do
-      knots = [
+      rope = [
         {x: 5, y: 8},
         {x: 5, y: 7},
         {x: 5, y: 6},
@@ -277,8 +257,8 @@ RSpec.describe Day9 do
         {x: 0, y: 0}
       ]
       movements = [:left, :left, :left, :left, :left, :left, :left, :left]
-      positions = day.make_moves(knots, movements)
-      expect(positions[-1]).to eq([
+      ropes = day.make_moves([rope], movements)
+      expect(ropes[-1]).to eq([
         {x: -3, y: 8},
         {x: -2, y: 8},
         {x: -1, y: 8},

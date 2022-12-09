@@ -15,33 +15,29 @@ class Day9 < AOC
   def solve(part:)
     initial = {x: 0, y: 0}
     range = (part == 1) ? 1..2 : 1..10
-    knots = range.map { initial.dup }
+    rope = range.map { initial.dup }
     input = read_input_file
     movements = build_movements(input)
-    positions = make_moves(knots, movements)
-    positions.map { |knots| knots[-1] }.uniq.size
+    ropes = make_moves([rope], movements)
+    ropes.map { |rope| rope[-1] }.uniq.size
   end
 
-  def make_moves(initial_knots, movements)
-    do_make_moves([initial_knots], movements)
-  end
-
-  def do_make_moves(positions, movements)
+  def make_moves(ropes, movements)
     if movements == []
-      positions
+      ropes
     else
       movement, *remaining_movements = movements
-      knots = positions[-1]
-      head = knots[0]
+      last_rope = ropes[-1]
+      head = last_rope[0]
       new_head = head.dup
       new_head[STEPS[movement][:attribute]] += STEPS[movement][:amount]
 
-      new_knots = knots[0..-2].zip(knots[1..]).reduce([new_head]) do |new_knots, (knot_1, knot_2)|
-        new_knot_1 = new_knots[-1]
-        new_knot_2 = move_tail(new_knot_1, knot_2)
-        new_knots << new_knot_2
+      new_rope = last_rope[1..].reduce([new_head]) do |knots, knot|
+        current_head = knots[-1]
+        new_knot = move_tail(current_head, knot)
+        knots << new_knot
       end
-      do_make_moves(positions << new_knots, remaining_movements)
+      make_moves(ropes << new_rope, remaining_movements)
     end
   end
 
