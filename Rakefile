@@ -1,5 +1,10 @@
 require_relative "./lib/loader"
 
+RubyVM::InstructionSequence.compile_option = {
+  tailcall_optimization: true,
+  trace_instruction: false
+}
+
 namespace :aoc do
   task :solve, [:day, :part] do  |task, args|
     day_class = Object.const_get("Day#{args[:day]}")
