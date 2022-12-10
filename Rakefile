@@ -6,7 +6,7 @@ RubyVM::InstructionSequence.compile_option = {
 }
 
 namespace :aoc do
-  task :solve, [:day, :part] do  |task, args|
+  task :solve, [:day, :part] do |task, args|
     day_class = Object.const_get("Day#{args[:day]}")
     input_file = "data/day#{args[:day]}.txt"
     day = day_class.new(input_file: input_file)
@@ -15,7 +15,9 @@ namespace :aoc do
     result = day.solve(part: args[:part].to_i)
     finish = Time.now
     time = finish - start
-    puts "Result: #{result}"
+    puts "Result:"
+    puts result
+    puts ""
     puts "Took: #{time}s"
   end
 end
